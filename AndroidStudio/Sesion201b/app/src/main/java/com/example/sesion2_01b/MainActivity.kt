@@ -21,6 +21,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Scaffold
@@ -39,6 +40,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -53,7 +55,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            Sesion201bTheme {
+            Sesion201bTheme (darkTheme = true) {
                 var foto by remember { mutableStateOf(R.drawable.foto01) }
                 Column (modifier = Modifier.fillMaxSize()){
                     introImagen(foto, Modifier.weight(0.25f))
@@ -115,14 +117,14 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun introImagen(foto: Int, modifier: Modifier) {
         var fotografia = foto;
-        var picture by remember { mutableStateOf("")}
+        var picture by remember { mutableStateOf("0")}
         Column (modifier = modifier
             .fillMaxWidth()
             .padding(top = 50.dp),
             horizontalAlignment = Alignment.CenterHorizontally){
             Text(text ="Selecciona una foto", fontSize = 14.sp, color = Color.Blue, modifier = Modifier.padding(8.dp))
-            TextField(value = picture, onValueChange = {picture = it}, label = { Text("Nº de Fotografía") }, modifier = Modifier.fillMaxWidth())
-            Button(modifier = Modifier.padding(4.dp), onClick = { fotografia = Integer.parseInt(picture) } ) {
+            TextField(value = picture, onValueChange = {picture = it}, label = { Text("Nº de Fotografía") }, modifier = Modifier.fillMaxWidth(), keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number))
+            Button(modifier = Modifier.padding(4.dp), onClick = { fotografia = picture.toInt() } ) {
                 Text("Aceptar", fontSize = 20.sp)
             }
         }
