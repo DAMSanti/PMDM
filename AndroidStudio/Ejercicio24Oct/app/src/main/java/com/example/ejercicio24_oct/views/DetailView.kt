@@ -29,7 +29,7 @@ import com.example.ejercicio24_oct.components.TitleView
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-fun DetailView(navController: NavController) {
+fun DetailView(navController: NavController, num:Int, usuario: String) {
     Scaffold (
         topBar = {
             TopAppBar(
@@ -45,12 +45,12 @@ fun DetailView(navController: NavController) {
             )
         }
     ){
-        ContentDetailView(navController)
+        ContentDetailView(navController, num, usuario)
     }
 }
 
 @Composable
-fun ContentDetailView(navController: NavController) {
+fun ContentDetailView(navController: NavController, num: Int, usuario: String) {
     Column (modifier = Modifier
         .fillMaxSize()
         .padding(top = 50.dp),
@@ -58,6 +58,8 @@ fun ContentDetailView(navController: NavController) {
         verticalArrangement = Arrangement.Center
     ){
         TitleView(name = "Detail View")
+        TitleView(name = num.toString())
+        TitleView(name = usuario)
         SpaceV(20.dp)
         //MainButton(name = "Return Home") {
         //    navController.popBackStack()

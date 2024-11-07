@@ -49,6 +49,8 @@ fun HomeView(navController: NavController) {
 
 @Composable
 fun ContentHomeView(navController: NavController) {
+    var n = 123
+    var u = "Usuario"
     Column (modifier = Modifier
         .fillMaxSize()
         .padding(top = 50.dp),
@@ -58,6 +60,6 @@ fun ContentHomeView(navController: NavController) {
         TitleView(name = "Home View")
         SpaceV(20.dp)
         MainButton(name = "To Detail",
-            onClick = {navController.navigate("Detail")})
+            onClick = {navController.navigate("Detail/${n}/${u}")})
     }
 }
